@@ -21,8 +21,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateDialogueState(FString newState);
-		UFUNCTION(BlueprintCallable)
+
+	UFUNCTION(BlueprintCallable)
 	void StartDialogue();
+
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
@@ -30,12 +32,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* DialogueTable;	
 
+	UPROPERTY()
+	FString LastRow;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TSubclassOf<UDialogueWidget> DialogueWidgetClass;
 
 	UPROPERTY()
 	UDialogueWidget* DialogueWidget;
 
-	UPROPERTY()
-	FString LastRow;
+	TArray<FString> ParseOptions(const FString& Options, const FString& Separator = TEXT("|"));
 };

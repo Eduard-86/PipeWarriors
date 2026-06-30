@@ -12,9 +12,7 @@
 void UDialogueWidget::SetupDialogueData(FDialogueRow& dialogue)
 {
 	DialogueRow = dialogue;
-
 	NPCBlock->SetText(DialogueRow.text);
-
 }
 
 void UDialogueWidget::AttachDialogueComponent(UDialogueComponent* dialogueComp)
@@ -22,13 +20,14 @@ void UDialogueWidget::AttachDialogueComponent(UDialogueComponent* dialogueComp)
 	DialogueComponent = dialogueComp;
 }
 
-
-
 void UDialogueWidget::AddAnswer(FDialogueRow& answer)
 {
-	UDialogueAnswer* answerWidget = CreateWidget<UDialogueAnswer>(GetOwningPlayer(), DialogueAnswerClass);
+	UDialogueAnswer* answerWidget =
+		CreateWidget<UDialogueAnswer>(GetOwningPlayer(), DialogueAnswerClass);
+
 	answerWidget->SetupDialogueRow(answer);
 	answerWidget->AttachDialogueComponent(DialogueComponent);
+
 	AnswersBox->AddChildToVerticalBox(answerWidget);
 }
 
@@ -39,7 +38,10 @@ void UDialogueWidget::ClearAnswers()
 
 void UDialogueWidget::NativeConstruct()
 {
+	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue window was created"));
+
 	APlayerController* playerController = GetOwningPlayer();
+
 	if (playerController)
 	{
 		FInputModeUIOnly InputMode;
@@ -50,7 +52,10 @@ void UDialogueWidget::NativeConstruct()
 }
 void UDialogueWidget::NativeDestruct()
 {
+	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue window was destructed"));
+
 	APlayerController* playerController = GetOwningPlayer();
+	
 	if (playerController)
 	{
 		FInputModeGameOnly InputMode;

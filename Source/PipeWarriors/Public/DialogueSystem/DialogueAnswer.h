@@ -21,7 +21,6 @@ class PIPEWARRIORS_API UDialogueAnswer : public UUserWidget
 protected:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UButton* AnswerButton;
-
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* AnswerTextBlock;
 

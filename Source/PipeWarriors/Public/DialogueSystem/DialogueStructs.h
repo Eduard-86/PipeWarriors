@@ -15,7 +15,7 @@ struct FDialogueRow : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText text;
 
-	// Например: 1|2|3;  5|8
+	// Разделитель   " | "
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString nextTextOptions;
 };

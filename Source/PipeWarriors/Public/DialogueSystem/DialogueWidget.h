@@ -29,8 +29,10 @@ protected:
 
 	UPROPERTY()
 	FDialogueRow  DialogueRow;
+
 	UPROPERTY()
 	UDialogueComponent* DialogueComponent;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TSubclassOf<UDialogueAnswer> DialogueAnswerClass;
 
