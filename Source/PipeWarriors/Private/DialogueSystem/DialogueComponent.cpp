@@ -4,6 +4,8 @@
 #include "DialogueSystem/DialogueComponent.h"
 #include "DialogueSystem/DialogueWidget.h"
 
+DEFINE_LOG_CATEGORY(LogDialogueSystem);
+
 UDialogueComponent::UDialogueComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
@@ -11,21 +13,18 @@ UDialogueComponent::UDialogueComponent()
 
 void UDialogueComponent::UpdateDialogueState(FString newState)
 {
-	if (newState == "END")
-		EndDialogue();
-
 	LastRow = newState;
 	FName rowName = FName(*LastRow);
-	FDialogueRow* currentRow = DialogueTable->FindRow<FDialogueRow>(rowName, TEXT("DialogueSystem"));
+	FDialogueRow* row = DialogueTable->FindRow<FDialogueRow>(rowName, TEXT("DialogueSystem"));
 
-	if (currentRow != nullptr)
+	if (row != nullptr)
 	{
-		DialogueWidget->SetupDialogueData(*currentRow);
+		DialogueWidget->SetupDialogueData(*row);
 		DialogueWidget->ClearAnswers();
 
 		// Установка вариантов ответа
 		TArray<FString> ParsedOptions;
-		FString Options = currentRow->nextTextOptions;
+		FString Options = row->nextTextOptions;
 		Options.ParseIntoArray(ParsedOptions, TEXT("|"), true);
 
 		for (auto& option : ParsedOptions)
@@ -43,7 +42,13 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 
 void UDialogueComponent::StartDialogue()
 {
-	if (DialogueWidgetClass)
+	LastRow = "START";
+
+	if (DialogueWidgetClass == nullptr)
+	{
+		UE_LOG(LogDialogueSystem, Error, TEXT("Dialogue widget class in blueprint defauts is null"));
+	}
+	else
 	{
 		APlayerController* playerController = GetWorld()->GetFirstPlayerController();
 		if (playerController)

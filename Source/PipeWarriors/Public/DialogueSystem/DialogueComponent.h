@@ -7,6 +7,8 @@
 #include "Engine/DataTable.h"
 #include "DialogueComponent.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogDialogueSystem, Log, All);
+
 class UDialogueWidget;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -35,5 +37,5 @@ protected:
 	UDialogueWidget* DialogueWidget;
 
 	UPROPERTY()
-	FString LastRow = "START";
+	FString LastRow;
 };
