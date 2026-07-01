@@ -20,6 +20,11 @@ void UDialogueWidget::AttachDialogueComponent(UDialogueComponent* dialogueComp)
 	DialogueComponent = dialogueComp;
 }
 
+void UDialogueWidget::SetNPCName(FText name)
+{
+	NPCName->SetText(name);
+}
+
 void UDialogueWidget::AddAnswer(FDialogueRow& answer)
 {
 	UDialogueAnswer* answerWidget =

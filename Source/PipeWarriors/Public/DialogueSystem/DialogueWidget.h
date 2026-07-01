@@ -25,6 +25,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* NPCBlock;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	UTextBlock* NPCName;
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UVerticalBox* AnswersBox;
 
 	UPROPERTY()
@@ -42,6 +44,9 @@ public:
 
 	UFUNCTION()
 	void AttachDialogueComponent(UDialogueComponent* dialogueComp);
+
+	UFUNCTION()
+	void SetNPCName(FText name);
 
 	UFUNCTION()
 	void AddAnswer(FDialogueRow& answer);

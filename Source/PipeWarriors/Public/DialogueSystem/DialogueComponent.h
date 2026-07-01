@@ -29,13 +29,16 @@ public:
 	void EndDialogue();
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	UDataTable* DialogueTable;	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	FText NPCName;
 
 	UPROPERTY()
 	FString LastRow;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
 	TSubclassOf<UDialogueWidget> DialogueWidgetClass;
 
 	UPROPERTY()

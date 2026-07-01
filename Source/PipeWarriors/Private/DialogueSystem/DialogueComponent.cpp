@@ -26,6 +26,7 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 	if (row != nullptr)
 	{
 		DialogueWidget->SetupDialogueData(*row);
+		DialogueWidget->SetNPCName(NPCName);
 		DialogueWidget->ClearAnswers();
 
 		for (auto& option : ParseOptions(row->nextTextOptions))
