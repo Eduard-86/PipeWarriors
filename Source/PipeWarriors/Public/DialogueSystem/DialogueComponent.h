@@ -7,6 +7,8 @@
 #include "Engine/DataTable.h"
 #include "DialogueComponent.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogDialogueSystem, Log, All);
+
 class UDialogueWidget;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -19,21 +21,28 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateDialogueState(FString newState);
-		UFUNCTION(BlueprintCallable)
+
+	UFUNCTION(BlueprintCallable)
 	void StartDialogue();
+
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	UDataTable* DialogueTable;	
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	FText NPCName;
+
+	UPROPERTY()
+	FString LastRow;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
 	TSubclassOf<UDialogueWidget> DialogueWidgetClass;
 
 	UPROPERTY()
 	UDialogueWidget* DialogueWidget;
 
-	UPROPERTY()
-	FString LastRow = "START";
+	TArray<FString> ParseOptions(const FString& Options, const FString& Separator = TEXT("|"));
 };

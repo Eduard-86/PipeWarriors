@@ -4,6 +4,8 @@
 #include "DialogueSystem/DialogueComponent.h"
 #include "DialogueSystem/DialogueWidget.h"
 
+DEFINE_LOG_CATEGORY(LogDialogueSystem);
+
 UDialogueComponent::UDialogueComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
@@ -11,31 +13,30 @@ UDialogueComponent::UDialogueComponent()
 
 void UDialogueComponent::UpdateDialogueState(FString newState)
 {
-	if (newState == "END")
+	UE_LOG(LogDialogueSystem, Log, TEXT("Update dialogue to row: %s"), *newState);
+
+	if (newState.IsEmpty())
+	{
 		EndDialogue();
+	}
 
 	LastRow = newState;
-	FName rowName = FName(*LastRow);
-	FDialogueRow* currentRow = DialogueTable->FindRow<FDialogueRow>(rowName, TEXT("DialogueSystem"));
+	FDialogueRow* row = DialogueTable->FindRow<FDialogueRow>(FName(*LastRow), TEXT("DialogueSystem"));
 
-	if (currentRow != nullptr)
+	if (row != nullptr)
 	{
-		DialogueWidget->SetupDialogueData(*currentRow);
+		DialogueWidget->SetupDialogueData(*row);
+		DialogueWidget->SetNPCName(NPCName);
 		DialogueWidget->ClearAnswers();
 
-		// Установка вариантов ответа
-		TArray<FString> ParsedOptions;
-		FString Options = currentRow->nextTextOptions;
-		Options.ParseIntoArray(ParsedOptions, TEXT("|"), true);
-
-		for (auto& option : ParsedOptions)
+		for (auto& option : ParseOptions(row->nextTextOptions))
 		{
-			FName AnswerName = FName(*option);
-			DialogueWidget->AddAnswer(*DialogueTable->FindRow<FDialogueRow>(AnswerName, TEXT("DialogueSystem")));
+			DialogueWidget->AddAnswer(*DialogueTable->FindRow<FDialogueRow>(FName(*option), TEXT("DialogueSystem")));
 		}
 	}
 	else
 	{
+		UE_LOG(LogDialogueSystem, Error, TEXT("Invalid dialogue row: %s"), *newState);
 		EndDialogue();
 	}
 
@@ -43,26 +44,37 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 
 void UDialogueComponent::StartDialogue()
 {
-	if (DialogueWidgetClass)
-	{
-		APlayerController* playerController = GetWorld()->GetFirstPlayerController();
-		if (playerController)
-		{
-			DialogueWidget = CreateWidget<UDialogueWidget>(playerController, DialogueWidgetClass);
-			DialogueWidget->AddToViewport(0);
-			DialogueWidget->AttachDialogueComponent(this);
+	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was started"));
+	LastRow = "START";
 
-			UpdateDialogueState(LastRow);
-		}
+	checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
+
+	auto controller = GetWorld()->GetFirstPlayerController();
+	if (controller != nullptr)
+	{
+		DialogueWidget = CreateWidget<UDialogueWidget>(controller, DialogueWidgetClass);
+		DialogueWidget->AddToViewport(0);
+		DialogueWidget->AttachDialogueComponent(this);
+
+		UpdateDialogueState(LastRow);
 	}
 }
 
 void UDialogueComponent::EndDialogue()
 {
+	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was ended"));
+
 	if (DialogueWidget)
 	{
 		DialogueWidget->RemoveFromParent();
 		DialogueWidget = nullptr;
 	}
+}
+
+TArray<FString> UDialogueComponent::ParseOptions(const FString& Options, const FString& Separator)
+{
+	TArray<FString> ParsedOptions;
+	Options.ParseIntoArray(ParsedOptions, *Separator, true);
+	return ParsedOptions;
 }
 
