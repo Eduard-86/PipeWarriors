@@ -5,15 +5,5 @@
 
 FText UQuestNode::FormatQuestDescription()
 {
-	if (bHideProgress)
-	{
-		return Description;
-	}
-	else
-	{
-		return FText::Format(NSLOCTEXT("QuestSystem", "QuestRowInPanel", "{0}  ( {1} / {2} )"),
-			Description,
-			FText::AsNumber(currentProgress),
-			FText::AsNumber(successProgress));
-	}
+	return Description;
 }

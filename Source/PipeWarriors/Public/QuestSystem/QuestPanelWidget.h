@@ -23,7 +23,5 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddQuestNote(FText description);
 	UFUNCTION(BlueprintCallable)
-	void UpdateQuestNote(int32 noteIndex, FText description);
-	UFUNCTION(BlueprintCallable)
 	void DeleteQuestNote(int32 noteIndex);
 };

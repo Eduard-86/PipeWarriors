@@ -15,13 +15,6 @@ void UQuestPanelWidget::AddQuestNote(FText description)
 	QuestsBox->AddChildToVerticalBox(note);
 }
 
-void UQuestPanelWidget::UpdateQuestNote(int32 noteIndex, FText description)
-{
-	auto note = Cast<UTextBlock>(QuestsBox->GetChildAt(noteIndex));
-	note->SetText(description);
-
-}
-
 void UQuestPanelWidget::DeleteQuestNote(int32 noteIndex)
 {
 	auto note = QuestsBox->GetChildAt(noteIndex);

@@ -18,14 +18,8 @@ public:
 	UPROPERTY()
 	FText QuestName;
 
-	int32 currentProgress = 0;
-	int32 successProgress = 1;
-
 	UPROPERTY()
 	FText Description;
-
-	UPROPERTY()
-	bool bHideProgress = false;
 
 public:
 	FText FormatQuestDescription();

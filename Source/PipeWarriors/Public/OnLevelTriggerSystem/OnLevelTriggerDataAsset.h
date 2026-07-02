@@ -6,9 +6,6 @@
 #include "Engine/DataAsset.h"
 #include "OnLevelTriggerDataAsset.generated.h"
 
-/**
- * 
- */
 UCLASS(Abstract)
 class PIPEWARRIORS_API UOnLevelTriggerDataAsset : public UPrimaryDataAsset
 {

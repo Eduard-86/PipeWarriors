@@ -13,7 +13,6 @@ void UStartNewQuestDataAsset::TriggerAction(UWorld* world)
 		auto quest = NewObject<UQuestNode>();
 		quest->QuestName = NewQuestName;
 		quest->Description = QuestDescription;
-		quest->successProgress = QuestSuccessProgress;
 		questSubsystem->CreateNewQuest(quest);
 	}
 }

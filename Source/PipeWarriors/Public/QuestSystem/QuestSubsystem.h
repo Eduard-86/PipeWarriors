@@ -29,7 +29,5 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CreateNewQuest(UQuestNode* questNode);
 	UFUNCTION(BlueprintCallable)
-	void UpdateQuestState();
-	UFUNCTION(BlueprintCallable)
 	void RemoveQuest(FText QuestName);
 };

@@ -23,7 +23,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
 	FText QuestDescription;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	int32 QuestSuccessProgress;
 };

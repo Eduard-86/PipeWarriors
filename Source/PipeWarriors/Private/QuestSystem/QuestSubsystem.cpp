@@ -28,10 +28,6 @@ void UQuestSubsystem::CreateNewQuest(UQuestNode* questNode)
 	questPanel->AddQuestNote(questNode->FormatQuestDescription());
 }
 
-void UQuestSubsystem::UpdateQuestState()
-{
-}
-
 void UQuestSubsystem::RemoveQuest(FText QuestName)
 {
 	for (auto quest : quests)

@@ -15,8 +15,10 @@ class PIPEWARRIORS_API UQuestSettings : public UDeveloperSettings
 	GENERATED_BODY()
 	
 public:
+
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="UI")
 	TSubclassOf<UQuestPanelWidget> QuestPanelWidgetClass;
+
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "UI")
 	TSubclassOf<UQuestNoteWidget> QuestNoteWidgetClass;
 };
