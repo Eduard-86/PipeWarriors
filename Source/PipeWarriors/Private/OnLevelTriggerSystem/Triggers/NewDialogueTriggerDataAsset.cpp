@@ -3,9 +3,9 @@
 #include "OnLevelTriggerSystem/Triggers/NewDialogueTriggerDataAsset.h"
 #include "DialogueSystem/DialogueSubsystem.h"
 
-void UNewDialogueTriggerDataAsset::TriggerAction()
+void UNewDialogueTriggerDataAsset::TriggerAction(UWorld* world)
 {
-	auto dialogueSubsystem = GetWorld()->GetSubsystem<UDialogueSubsystem>();
+	auto dialogueSubsystem = world->GetSubsystem<UDialogueSubsystem>();
 	if (dialogueSubsystem != nullptr)
 	{
 		dialogueSubsystem->ChangeDialogueByNPCName(NPCName, newDialogueTable);

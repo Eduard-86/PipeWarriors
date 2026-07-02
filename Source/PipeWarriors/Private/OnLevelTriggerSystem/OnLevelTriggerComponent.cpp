@@ -9,19 +9,22 @@ UOnLevelTriggerComponent::UOnLevelTriggerComponent() : Super()
 
 void UOnLevelTriggerComponent::ActivateAllTriggers()
 {
-	for (auto trigger : triggers)
+	for (auto& trigger : triggers)
 	{
-		trigger->TriggerAction();
+		trigger.LoadSynchronous();
+		trigger->TriggerAction(GetWorld());
 	}
 }
 
 void UOnLevelTriggerComponent::ActivateTriggerByName(FText name)
 {
-	for (auto trigger : triggers)
+	for (auto& trigger : triggers)
 	{
+		trigger.LoadSynchronous();
+
 		if (trigger->isNameValid(name))
 		{
-			trigger->TriggerAction();
+			trigger->TriggerAction(GetWorld());
 			break;
 		}
 	}

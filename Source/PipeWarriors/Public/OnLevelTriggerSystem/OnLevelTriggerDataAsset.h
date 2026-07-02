@@ -19,7 +19,7 @@ public:
 	FText TriggerName;
 
 	UFUNCTION(BlueprintCallable)
-	virtual void TriggerAction();
+	virtual void TriggerAction(UWorld* world);
 
 	UFUNCTION(BlueprintCallable)
 	bool isNameValid(FText name);

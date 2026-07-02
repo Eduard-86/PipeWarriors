@@ -7,5 +7,5 @@ bool UOnLevelTriggerDataAsset::isNameValid(FText name)
 {
 	return TriggerName.IdenticalTo(name);
 }
-void UOnLevelTriggerDataAsset::TriggerAction() { }
+void UOnLevelTriggerDataAsset::TriggerAction(UWorld* world) { }
 

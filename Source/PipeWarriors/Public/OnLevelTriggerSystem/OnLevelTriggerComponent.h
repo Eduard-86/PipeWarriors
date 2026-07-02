@@ -24,5 +24,5 @@ public:
 
 protected:
 	UPROPERTY(EditInstanceOnly)
-	TArray<UOnLevelTriggerDataAsset*> triggers;
+	TArray<TSoftObjectPtr<UOnLevelTriggerDataAsset>> triggers;
 };

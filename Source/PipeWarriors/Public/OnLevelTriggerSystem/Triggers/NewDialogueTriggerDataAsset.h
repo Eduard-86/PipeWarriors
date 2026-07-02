@@ -18,5 +18,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
 	UDataTable* newDialogueTable;
 
-	virtual void TriggerAction() override;
+	virtual void TriggerAction(UWorld* world) override;
 };

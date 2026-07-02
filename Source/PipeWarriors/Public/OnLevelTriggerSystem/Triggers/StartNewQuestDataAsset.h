@@ -13,5 +13,7 @@ UCLASS()
 class PIPEWARRIORS_API UStartNewQuestDataAsset : public UOnLevelTriggerDataAsset
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void TriggerAction(UWorld* world) override;
 };
