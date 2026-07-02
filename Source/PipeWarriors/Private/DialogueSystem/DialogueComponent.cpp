@@ -71,6 +71,16 @@ void UDialogueComponent::EndDialogue()
 	}
 }
 
+bool UDialogueComponent::CheckName(FText name)
+{
+	return NPCName.IdenticalTo(name);
+}
+
+void UDialogueComponent::SetNewTable(UDataTable* newTable)
+{
+	DialogueTable = newTable;
+}
+
 TArray<FString> UDialogueComponent::ParseOptions(const FString& Options, const FString& Separator)
 {
 	TArray<FString> ParsedOptions;

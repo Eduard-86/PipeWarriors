@@ -28,6 +28,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
+	UFUNCTION()
+	bool CheckName(FText name);
+	UFUNCTION()
+	void SetNewTable(UDataTable* newTable);
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	UDataTable* DialogueTable;	
