@@ -17,23 +17,33 @@ void UQuestSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	if (playerController != nullptr)
 	{
 		const UQuestSettings* settings = GetDefault<UQuestSettings>();
-		questPanel = CreateWidget<UQuestPanelWidget>(playerController, settings->QuestWidgetClass);
+		questPanel = CreateWidget<UQuestPanelWidget>(playerController, settings->QuestPanelWidgetClass);
 		questPanel->AddToViewport(0);
 	}
 }
 
-void UQuestSubsystem::CreateNewQuest()
+void UQuestSubsystem::CreateNewQuest(UQuestNode* questNode)
 {
-	auto quest = NewObject<UQuestNode>();
-	quest->Description = FText::FromString(TEXT("first quest"));
-	quests.AddUnique(quest);
-	questPanel->AddQuestNote(quest->FormatQuestDescription());
+	quests.AddUnique(questNode);
+	questPanel->AddQuestNote(questNode->FormatQuestDescription());
 }
 
 void UQuestSubsystem::UpdateQuestState()
 {
 }
 
-void UQuestSubsystem::RemoveQuest()
+void UQuestSubsystem::RemoveQuest(FText QuestName)
 {
+	for (auto quest : quests)
+	{
+		if (quest->QuestName.IdenticalTo(QuestName))
+		{
+			int32 index = quests.Find(quest);
+			questPanel->DeleteQuestNote(index);
+
+			quests.Remove(quest);
+
+			break;
+		}
+	}
 }

@@ -7,6 +7,7 @@
 #include "QuestSettings.generated.h"
 
 class UQuestPanelWidget;
+class UQuestNoteWidget;
 
 UCLASS(Config=Game, DefaultConfig, meta=(DisplayName="Quest settings"))
 class PIPEWARRIORS_API UQuestSettings : public UDeveloperSettings
@@ -15,5 +16,7 @@ class PIPEWARRIORS_API UQuestSettings : public UDeveloperSettings
 	
 public:
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category="UI")
-	TSubclassOf<UQuestPanelWidget> QuestWidgetClass;
+	TSubclassOf<UQuestPanelWidget> QuestPanelWidgetClass;
+	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "UI")
+	TSubclassOf<UQuestNoteWidget> QuestNoteWidgetClass;
 };

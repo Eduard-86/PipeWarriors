@@ -4,26 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "OnLevelTriggerSystem/OnLevelTriggerDataAsset.h"
-#include "StartNewQuestDataAsset.generated.h"
+#include "EndQuestDataAsset.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PIPEWARRIORS_API UStartNewQuestDataAsset : public UOnLevelTriggerDataAsset
+class PIPEWARRIORS_API UEndQuestDataAsset : public UOnLevelTriggerDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	virtual void TriggerAction(UWorld* world) override;
 
-public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	FText NewQuestName;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	FText QuestDescription;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	int32 QuestSuccessProgress;
+	FText QuestNameToEnd;
 };

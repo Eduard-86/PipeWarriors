@@ -3,12 +3,17 @@
 
 #include "OnLevelTriggerSystem/Triggers/StartNewQuestDataAsset.h"
 #include "QuestSystem/QuestSubsystem.h"
+#include "QuestSystem/QuestNode.h"
 
 void UStartNewQuestDataAsset::TriggerAction(UWorld* world)
 {
 	auto questSubsystem = world->GetSubsystem<UQuestSubsystem>();
 	if (questSubsystem != nullptr)
 	{
-		questSubsystem->CreateNewQuest();
+		auto quest = NewObject<UQuestNode>();
+		quest->QuestName = NewQuestName;
+		quest->Description = QuestDescription;
+		quest->successProgress = QuestSuccessProgress;
+		questSubsystem->CreateNewQuest(quest);
 	}
 }

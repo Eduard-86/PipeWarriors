@@ -4,11 +4,14 @@
 #include "QuestSystem/QuestPanelWidget.h"
 #include "Components/VerticalBox.h"
 #include "Components/TextBlock.h"
+#include "QuestSystem/QuestSettings.h"
+#include "QuestSystem/QuestNoteWidget.h"
 
 void UQuestPanelWidget::AddQuestNote(FText description)
 {
-	auto note = NewObject<UTextBlock>(this);
-	note->SetText(description);
+	const UQuestSettings* settings = GetDefault<UQuestSettings>();
+	auto note = CreateWidget<UQuestNoteWidget>(GetOwningPlayer(), settings->QuestNoteWidgetClass);
+	note->UpdateText(description);
 	QuestsBox->AddChildToVerticalBox(note);
 }
 

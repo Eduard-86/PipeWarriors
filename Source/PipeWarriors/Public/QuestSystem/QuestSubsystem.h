@@ -27,9 +27,9 @@ public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	UFUNCTION(BlueprintCallable)
-	void CreateNewQuest();
+	void CreateNewQuest(UQuestNode* questNode);
 	UFUNCTION(BlueprintCallable)
 	void UpdateQuestState();
 	UFUNCTION(BlueprintCallable)
-	void RemoveQuest();
+	void RemoveQuest(FText QuestName);
 };
