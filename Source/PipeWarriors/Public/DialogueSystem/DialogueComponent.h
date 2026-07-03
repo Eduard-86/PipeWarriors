@@ -32,12 +32,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
-<<<<<<< Updated upstream
 	UFUNCTION()
 	bool CheckName(FText name);
 	UFUNCTION()
 	void SetNewTable(UDataTable* newTable);
-=======
 public:
 
 	UPROPERTY(BlueprintAssignable)
@@ -45,7 +43,6 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FEndDialog DialogEndDelegate;
->>>>>>> Stashed changes
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
