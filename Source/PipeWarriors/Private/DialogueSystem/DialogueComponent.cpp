@@ -18,6 +18,7 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 	if (newState.IsEmpty() || !DialogueTable)
 	{
 		EndDialogue();
+		return;
 	}
 
 	LastRow = newState;
@@ -46,6 +47,13 @@ void UDialogueComponent::StartDialogue()
 {
 	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was started"));
 	LastRow = "START";
+
+	if (DialogueTable == nullptr)
+	{
+		EndDialogue();
+		return;
+	}
+		
 
 	checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
 

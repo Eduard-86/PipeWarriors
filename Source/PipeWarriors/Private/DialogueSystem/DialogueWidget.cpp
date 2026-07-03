@@ -49,9 +49,11 @@ void UDialogueWidget::NativeConstruct()
 
 	if (playerController)
 	{
-		FInputModeUIOnly InputMode;
-		InputMode.SetWidgetToFocus(TakeWidget());
-		playerController->SetInputMode(InputMode);
+		//FInputModeUIOnly InputMode;
+		//InputMode.SetWidgetToFocus(TakeWidget());
+		//InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+		//playerController->SetInputMode(InputMode);
 		playerController->bShowMouseCursor = true;
 	}
 }
@@ -63,8 +65,8 @@ void UDialogueWidget::NativeDestruct()
 	
 	if (playerController)
 	{
-		FInputModeGameOnly InputMode;
-		playerController->SetInputMode(InputMode);
+		//FInputModeGameOnly InputMode;
+		//playerController->SetInputMode(InputMode);
 		playerController->bShowMouseCursor = false;
 	}
 }
