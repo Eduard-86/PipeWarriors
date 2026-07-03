@@ -34,7 +34,8 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 		}
 
 		DialogueWidget->SetupDialogueData(*row);
-		DialogueWidget->SetNPCName(NPCName);
+		DialogueWidget->SetNPCName(NPC_Name);
+		DialogueWidget->SetNPCPortrait(NPC_Portrait);
 		DialogueWidget->ClearAnswers();
 
 		for (auto& option : ParseOptions(row->nextTextOptions))
@@ -90,9 +91,9 @@ void UDialogueComponent::EndDialogue()
 	}
 }
 
-bool UDialogueComponent::CheckName(FText name)
+bool UDialogueComponent::CheckName(FString name)
 {
-	return NPCName.IdenticalTo(name);
+	return SystemCharacterName == name;
 }
 
 void UDialogueComponent::SetNewTable(UDataTable* newTable)

@@ -16,7 +16,7 @@ class PIPEWARRIORS_API UQuestNode : public UObject
 	
 public:
 	UPROPERTY()
-	FText QuestName;
+	FString QuestName;
 
 	UPROPERTY()
 	FText Description;

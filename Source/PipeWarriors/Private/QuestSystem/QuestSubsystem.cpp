@@ -28,11 +28,11 @@ void UQuestSubsystem::CreateNewQuest(UQuestNode* questNode)
 	questPanel->AddQuestNote(questNode->FormatQuestDescription());
 }
 
-void UQuestSubsystem::RemoveQuest(FText QuestName)
+void UQuestSubsystem::RemoveQuest(FString QuestName)
 {
 	for (auto quest : quests)
 	{
-		if (quest->QuestName.IdenticalTo(QuestName))
+		if (quest->QuestName == QuestName)
 		{
 			int32 index = quests.Find(quest);
 			questPanel->DeleteQuestNote(index);

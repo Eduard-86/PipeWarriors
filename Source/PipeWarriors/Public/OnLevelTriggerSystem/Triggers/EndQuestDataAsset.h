@@ -18,5 +18,5 @@ public:
 	virtual void TriggerAction_Implementation(UWorld* world) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	FText QuestNameToEnd;
+	FString QuestNameToEnd;
 };

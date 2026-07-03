@@ -49,6 +49,9 @@ public:
 	void SetNPCName(FText name);
 
 	UFUNCTION()
+	void SetNPCPortrait(UTexture2D* image);
+
+	UFUNCTION()
 	void AddAnswer(FDialogueRow& answer);
 
 	UFUNCTION()

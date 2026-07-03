@@ -19,5 +19,5 @@ public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	UFUNCTION(BlueprintCallable)
-	void ChangeDialogueByNPCName(FText NPCName, UDataTable* newDialogue);
+	void ChangeDialogueByNPCName(FString NPCName, UDataTable* newDialogue);
 };

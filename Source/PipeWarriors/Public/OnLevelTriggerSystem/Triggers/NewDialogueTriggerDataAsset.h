@@ -13,7 +13,7 @@ class PIPEWARRIORS_API UNewDialogueTriggerDataAsset : public UOnLevelTriggerData
 	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
-	FText NPCName;
+	FString NPCName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
 	UDataTable* newDialogueTable;

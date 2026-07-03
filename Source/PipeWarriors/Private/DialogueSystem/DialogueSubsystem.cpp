@@ -24,7 +24,7 @@ void UDialogueSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 
 }
 
-void UDialogueSubsystem::ChangeDialogueByNPCName(FText NPCName, UDataTable* newDialogue)
+void UDialogueSubsystem::ChangeDialogueByNPCName(FString NPCName, UDataTable* newDialogue)
 {
 	for (auto actor : actorsWithDialogue)
 	{

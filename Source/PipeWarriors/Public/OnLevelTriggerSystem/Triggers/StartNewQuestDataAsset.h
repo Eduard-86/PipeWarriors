@@ -19,7 +19,7 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
-	FText NewQuestName;
+	FString NewQuestName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
 	FText QuestDescription;

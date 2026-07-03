@@ -8,6 +8,7 @@
 
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
+#include "Components/Image.h"
 
 void UDialogueWidget::SetupDialogueData(FDialogueRow& dialogue)
 {
@@ -23,6 +24,11 @@ void UDialogueWidget::AttachDialogueComponent(UDialogueComponent* dialogueComp)
 void UDialogueWidget::SetNPCName(FText name)
 {
 	NPCName->SetText(name);
+}
+
+void UDialogueWidget::SetNPCPortrait(UTexture2D* image)
+{
+	NPCImage->SetBrushFromTexture(image);
 }
 
 void UDialogueWidget::AddAnswer(FDialogueRow& answer)

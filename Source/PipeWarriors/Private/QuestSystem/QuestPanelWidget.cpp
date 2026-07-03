@@ -19,6 +19,5 @@ void UQuestPanelWidget::DeleteQuestNote(int32 noteIndex)
 {
 	auto note = QuestsBox->GetChildAt(noteIndex);
 	note->MarkAsGarbage();
-
-	QuestsBox->RemoveChildAt(noteIndex);
+	note->RemoveFromParent();
 }

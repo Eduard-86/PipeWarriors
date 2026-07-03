@@ -14,6 +14,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEndDialog, UDialogueComponent*, Dia
 
 
 class UDialogueWidget;
+class UTexture2D;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PIPEWARRIORS_API UDialogueComponent : public UActorComponent
@@ -33,7 +34,7 @@ public:
 	void EndDialogue();
 
 	UFUNCTION()
-	bool CheckName(FText name);
+	bool CheckName(FString name);
 	UFUNCTION()
 	void SetNewTable(UDataTable* newTable);
 public:
@@ -49,7 +50,13 @@ protected:
 	UDataTable* DialogueTable;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
-	FText NPCName;
+	FText NPC_Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	FString SystemCharacterName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	UTexture2D* NPC_Portrait;
 
 	UPROPERTY()
 	FString LastRow;
