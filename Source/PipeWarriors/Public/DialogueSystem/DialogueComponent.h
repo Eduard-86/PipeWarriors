@@ -9,6 +9,10 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogDialogueSystem, Log, All);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FStartDialog, UDialogueComponent*, DialogComponent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEndDialog, UDialogueComponent*, DialogComponent);
+
+
 class UDialogueWidget;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -28,10 +32,20 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
+<<<<<<< Updated upstream
 	UFUNCTION()
 	bool CheckName(FText name);
 	UFUNCTION()
 	void SetNewTable(UDataTable* newTable);
+=======
+public:
+
+	UPROPERTY(BlueprintAssignable)
+	FStartDialog DialogStartDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FEndDialog DialogEndDelegate;
+>>>>>>> Stashed changes
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")

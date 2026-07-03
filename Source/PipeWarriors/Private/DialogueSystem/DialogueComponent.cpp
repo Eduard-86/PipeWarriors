@@ -15,7 +15,7 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 {
 	UE_LOG(LogDialogueSystem, Log, TEXT("Update dialogue to row: %s"), *newState);
 
-	if (newState.IsEmpty())
+	if (newState.IsEmpty() || !DialogueTable)
 	{
 		EndDialogue();
 	}
@@ -52,6 +52,8 @@ void UDialogueComponent::StartDialogue()
 	auto controller = GetWorld()->GetFirstPlayerController();
 	if (controller != nullptr)
 	{
+		DialogStartDelegate.Broadcast(this);
+
 		DialogueWidget = CreateWidget<UDialogueWidget>(controller, DialogueWidgetClass);
 		DialogueWidget->AddToViewport(0);
 		DialogueWidget->AttachDialogueComponent(this);
@@ -63,6 +65,8 @@ void UDialogueComponent::StartDialogue()
 void UDialogueComponent::EndDialogue()
 {
 	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was ended"));
+
+	DialogEndDelegate.Broadcast(this);
 
 	if (DialogueWidget)
 	{
