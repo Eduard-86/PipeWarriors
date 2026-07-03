@@ -5,9 +5,16 @@
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
 #include "DialogueSystem/DialogueComponent.h"
+#include "OnLevelTriggerSystem/OnLevelTriggerDataAsset.h"
 
 void UDialogueAnswer::ProcessAnswerSelection()
 {
+	if (!DialogueRow.TriggerAsset.IsNull())
+	{
+		DialogueRow.TriggerAsset.LoadSynchronous();
+		DialogueRow.TriggerAsset->TriggerAction(GetWorld());
+	}
+
 	DialogueComponent->UpdateDialogueState(DialogueRow.nextTextOptions);
 }
 
