@@ -15,8 +15,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Trigger")
 	FText TriggerName;
 
-	UFUNCTION(BlueprintCallable)
-	virtual void TriggerAction(UWorld* world);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void TriggerAction(UWorld* world);
+
+	virtual void TriggerAction_Implementation(UWorld* world);
 
 	UFUNCTION(BlueprintCallable)
 	bool isNameValid(FText name);

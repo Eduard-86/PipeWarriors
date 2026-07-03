@@ -15,7 +15,7 @@ class PIPEWARRIORS_API UEndQuestDataAsset : public UOnLevelTriggerDataAsset
 	GENERATED_BODY()
 
 public:
-	virtual void TriggerAction(UWorld* world) override;
+	virtual void TriggerAction_Implementation(UWorld* world) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest")
 	FText QuestNameToEnd;

@@ -3,7 +3,7 @@
 #include "OnLevelTriggerSystem/Triggers/NewDialogueTriggerDataAsset.h"
 #include "DialogueSystem/DialogueSubsystem.h"
 
-void UNewDialogueTriggerDataAsset::TriggerAction(UWorld* world)
+void UNewDialogueTriggerDataAsset::TriggerAction_Implementation(UWorld* world)
 {
 	auto dialogueSubsystem = world->GetSubsystem<UDialogueSubsystem>();
 	if (dialogueSubsystem != nullptr)
