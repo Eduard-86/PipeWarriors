@@ -3,6 +3,7 @@
 
 #include "DialogueSystem/DialogueComponent.h"
 #include "DialogueSystem/DialogueWidget.h"
+#include "OnLevelTriggerSystem/OnLevelTriggerDataAsset.h"
 
 DEFINE_LOG_CATEGORY(LogDialogueSystem);
 
@@ -25,6 +26,12 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 
 	if (row != nullptr)
 	{
+		if (!row->TriggerAsset.IsNull())
+		{
+			row->TriggerAsset.LoadSynchronous();
+			row->TriggerAsset->TriggerAction(GetWorld());
+		}
+
 		DialogueWidget->SetupDialogueData(*row);
 		DialogueWidget->SetNPCName(NPCName);
 		DialogueWidget->ClearAnswers();
