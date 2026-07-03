@@ -61,7 +61,7 @@ protected:
 	UPROPERTY()
 	FString LastRow;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	TSubclassOf<UDialogueWidget> DialogueWidgetClass;
 
 	UPROPERTY()
