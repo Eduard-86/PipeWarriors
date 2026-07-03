@@ -4,7 +4,7 @@
 #include "OnLevelTriggerSystem/Triggers/EndQuestDataAsset.h"
 #include "QuestSystem/QuestSubsystem.h"
 
-void UEndQuestDataAsset::TriggerAction(UWorld* world)
+void UEndQuestDataAsset::TriggerAction_Implementation(UWorld* world)
 {
 	auto questSubsystem = world->GetSubsystem<UQuestSubsystem>();
 	if (questSubsystem != nullptr)
