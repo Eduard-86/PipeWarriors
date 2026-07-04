@@ -9,6 +9,7 @@
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
 #include "Components/Image.h"
+#include "Components/VerticalBoxSlot.h"
 
 void UDialogueWidget::SetupDialogueData(FDialogueRow& dialogue)
 {
@@ -39,7 +40,8 @@ void UDialogueWidget::AddAnswer(FDialogueRow& answer)
 	answerWidget->SetupDialogueRow(answer);
 	answerWidget->AttachDialogueComponent(DialogueComponent);
 
-	AnswersBox->AddChildToVerticalBox(answerWidget);
+	auto box = AnswersBox->AddChildToVerticalBox(answerWidget);
+	box->SetHorizontalAlignment(HAlign_Fill);
 }
 
 void UDialogueWidget::ClearAnswers()
