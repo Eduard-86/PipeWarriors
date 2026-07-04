@@ -18,9 +18,13 @@ class PIPEWARRIORS_API UDialogueAnswer : public UUserWidget
 {
 	GENERATED_BODY()
 
+public:
+	
 protected:
+
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UButton* AnswerButton;
+	
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* AnswerTextBlock;
 
@@ -34,6 +38,7 @@ protected:
 	void ProcessAnswerSelection();
 
 	virtual void NativeConstruct() override;
+
 
 public:
 	UFUNCTION()
