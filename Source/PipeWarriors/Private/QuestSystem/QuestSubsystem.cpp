@@ -16,9 +16,9 @@ void UQuestSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	
 	if (playerController != nullptr)
 	{
-		const UQuestSettings* settings = GetDefault<UQuestSettings>();
-		questPanel = CreateWidget<UQuestPanelWidget>(playerController, settings->QuestPanelWidgetClass);
-		questPanel->AddToViewport(0);
+		//const UQuestSettings* settings = GetDefault<UQuestSettings>();
+		//questPanel = CreateWidget<UQuestPanelWidget>(playerController, settings->QuestPanelWidgetClass);
+		//questPanel->AddToViewport(0);
 	}
 }
 

@@ -56,14 +56,14 @@ void UDialogueComponent::StartDialogue()
 	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was started"));
 	LastRow = "START";
 
-	if (DialogueTable == nullptr)
+	if (DialogueTable == nullptr || DialogueWidgetClass == nullptr)
 	{
 		EndDialogue();
 		return;
 	}
 		
 
-	checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
+	//checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
 
 	auto controller = GetWorld()->GetFirstPlayerController();
 	if (controller != nullptr)

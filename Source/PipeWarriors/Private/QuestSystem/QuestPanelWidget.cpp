@@ -9,15 +9,15 @@
 
 void UQuestPanelWidget::AddQuestNote(FText description)
 {
-	const UQuestSettings* settings = GetDefault<UQuestSettings>();
-	auto note = CreateWidget<UQuestNoteWidget>(GetOwningPlayer(), settings->QuestNoteWidgetClass);
-	note->UpdateText(description);
-	QuestsBox->AddChildToVerticalBox(note);
+	//const UQuestSettings* settings = GetDefault<UQuestSettings>();
+	//auto note = CreateWidget<UQuestNoteWidget>(GetOwningPlayer(), settings->QuestNoteWidgetClass);
+	//note->UpdateText(description);
+	//QuestsBox->AddChildToVerticalBox(note);
 }
 
 void UQuestPanelWidget::DeleteQuestNote(int32 noteIndex)
 {
-	auto note = QuestsBox->GetChildAt(noteIndex);
-	note->MarkAsGarbage();
-	note->RemoveFromParent();
+	//auto note = QuestsBox->GetChildAt(noteIndex);
+	//note->MarkAsGarbage();
+	//note->RemoveFromParent();
 }
