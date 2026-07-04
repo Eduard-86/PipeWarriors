@@ -28,13 +28,17 @@ void UDialogueAnswer::NativeConstruct()
 	}
 }
 
+
 void UDialogueAnswer::SetupDialogueRow(FDialogueRow& row)
 {
 	DialogueRow = row;
 	AnswerTextBlock->SetText(DialogueRow.text);
+
+	AnswerTextBlock->SetAutoWrapText(true);
 }
 
 void UDialogueAnswer::AttachDialogueComponent(UDialogueComponent* dialogueComp)
 {
 	DialogueComponent = dialogueComp;
+	AnswerTextBlock->SetAutoWrapText(true);
 }
