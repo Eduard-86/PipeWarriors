@@ -3,6 +3,7 @@
 
 #include "DialogueSystem/DialogueComponent.h"
 #include "DialogueSystem/DialogueWidget.h"
+#include "OnLevelTriggerSystem/OnLevelTriggerDataAsset.h"
 
 DEFINE_LOG_CATEGORY(LogDialogueSystem);
 
@@ -15,9 +16,10 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 {
 	UE_LOG(LogDialogueSystem, Log, TEXT("Update dialogue to row: %s"), *newState);
 
-	if (newState.IsEmpty())
+	if (newState.IsEmpty() || !DialogueTable)
 	{
 		EndDialogue();
+		return;
 	}
 
 	LastRow = newState;
@@ -25,8 +27,15 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 
 	if (row != nullptr)
 	{
+		if (!row->TriggerAsset.IsNull())
+		{
+			row->TriggerAsset.LoadSynchronous();
+			row->TriggerAsset->TriggerAction(GetWorld());
+		}
+
 		DialogueWidget->SetupDialogueData(*row);
-		DialogueWidget->SetNPCName(NPCName);
+		DialogueWidget->SetNPCName(NPC_Name);
+		DialogueWidget->SetNPCPortrait(NPC_Portrait);
 		DialogueWidget->ClearAnswers();
 
 		for (auto& option : ParseOptions(row->nextTextOptions))
@@ -47,11 +56,20 @@ void UDialogueComponent::StartDialogue()
 	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was started"));
 	LastRow = "START";
 
-	checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
+	if (DialogueTable == nullptr || DialogueWidgetClass == nullptr)
+	{
+		EndDialogue();
+		return;
+	}
+		
+
+	//checkf(DialogueWidgetClass != nullptr, TEXT("Dialogue widget class in blueprint defaults is null"))
 
 	auto controller = GetWorld()->GetFirstPlayerController();
 	if (controller != nullptr)
 	{
+		DialogStartDelegate.Broadcast(this);
+
 		DialogueWidget = CreateWidget<UDialogueWidget>(controller, DialogueWidgetClass);
 		DialogueWidget->AddToViewport(0);
 		DialogueWidget->AttachDialogueComponent(this);
@@ -64,11 +82,23 @@ void UDialogueComponent::EndDialogue()
 {
 	UE_LOG(LogDialogueSystem, Log, TEXT("Dialogue was ended"));
 
+	DialogEndDelegate.Broadcast(this);
+
 	if (DialogueWidget)
 	{
 		DialogueWidget->RemoveFromParent();
 		DialogueWidget = nullptr;
 	}
+}
+
+bool UDialogueComponent::CheckName(FString name)
+{
+	return SystemCharacterName == name;
+}
+
+void UDialogueComponent::SetNewTable(UDataTable* newTable)
+{
+	DialogueTable = newTable;
 }
 
 TArray<FString> UDialogueComponent::ParseOptions(const FString& Options, const FString& Separator)

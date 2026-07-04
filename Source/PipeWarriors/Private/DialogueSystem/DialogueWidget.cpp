@@ -8,6 +8,7 @@
 
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
+#include "Components/Image.h"
 
 void UDialogueWidget::SetupDialogueData(FDialogueRow& dialogue)
 {
@@ -23,6 +24,11 @@ void UDialogueWidget::AttachDialogueComponent(UDialogueComponent* dialogueComp)
 void UDialogueWidget::SetNPCName(FText name)
 {
 	NPCName->SetText(name);
+}
+
+void UDialogueWidget::SetNPCPortrait(UTexture2D* image)
+{
+	NPCImage->SetBrushFromTexture(image);
 }
 
 void UDialogueWidget::AddAnswer(FDialogueRow& answer)
@@ -49,9 +55,11 @@ void UDialogueWidget::NativeConstruct()
 
 	if (playerController)
 	{
-		FInputModeUIOnly InputMode;
-		InputMode.SetWidgetToFocus(TakeWidget());
-		playerController->SetInputMode(InputMode);
+		//FInputModeUIOnly InputMode;
+		//InputMode.SetWidgetToFocus(TakeWidget());
+		//InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+		//playerController->SetInputMode(InputMode);
 		playerController->bShowMouseCursor = true;
 	}
 }
@@ -63,8 +71,8 @@ void UDialogueWidget::NativeDestruct()
 	
 	if (playerController)
 	{
-		FInputModeGameOnly InputMode;
-		playerController->SetInputMode(InputMode);
+		//FInputModeGameOnly InputMode;
+		//playerController->SetInputMode(InputMode);
 		playerController->bShowMouseCursor = false;
 	}
 }

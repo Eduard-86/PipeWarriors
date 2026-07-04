@@ -9,7 +9,12 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogDialogueSystem, Log, All);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FStartDialog, UDialogueComponent*, DialogComponent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEndDialog, UDialogueComponent*, DialogComponent);
+
+
 class UDialogueWidget;
+class UTexture2D;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PIPEWARRIORS_API UDialogueComponent : public UActorComponent
@@ -28,17 +33,35 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndDialogue();
 
+	UFUNCTION()
+	bool CheckName(FString name);
+	UFUNCTION()
+	void SetNewTable(UDataTable* newTable);
+public:
+
+	UPROPERTY(BlueprintAssignable)
+	FStartDialog DialogStartDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FEndDialog DialogEndDelegate;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	UDataTable* DialogueTable;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
-	FText NPCName;
+	FText NPC_Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	FString SystemCharacterName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
+	UTexture2D* NPC_Portrait;
 
 	UPROPERTY()
 	FString LastRow;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")
 	TSubclassOf<UDialogueWidget> DialogueWidgetClass;
 
 	UPROPERTY()

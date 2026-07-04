@@ -7,7 +7,13 @@
 		{
 			"Name": "PipeWarriors",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"UMG",
+				"DeveloperSettings",
+				"CoreUObject"
+			]
 		}
 	],
 	"Plugins": [
@@ -17,6 +23,10 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "ElectraPlayer",
+			"Enabled": true
 		}
 	]
 }
