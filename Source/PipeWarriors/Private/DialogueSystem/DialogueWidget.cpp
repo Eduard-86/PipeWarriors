@@ -42,6 +42,7 @@ void UDialogueWidget::AddAnswer(FDialogueRow& answer)
 
 	auto box = AnswersBox->AddChildToVerticalBox(answerWidget);
 	box->SetHorizontalAlignment(HAlign_Fill);
+
 }
 
 void UDialogueWidget::ClearAnswers()

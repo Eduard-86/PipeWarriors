@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Components/ActorComponent.h"
 #include "Engine/DataTable.h"
 #include "DialogueComponent.generated.h"
@@ -11,6 +12,8 @@ DECLARE_LOG_CATEGORY_EXTERN(LogDialogueSystem, Log, All);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FStartDialog, UDialogueComponent*, DialogComponent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEndDialog, UDialogueComponent*, DialogComponent);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDialogKey, FString, DialogComponent);
 
 
 class UDialogueWidget;
@@ -44,6 +47,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FEndDialog DialogEndDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FDialogKey ReplicTagDelegate;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC")

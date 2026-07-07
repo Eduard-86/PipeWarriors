@@ -4,6 +4,7 @@
 #include "DialogueSystem/DialogueComponent.h"
 #include "DialogueSystem/DialogueWidget.h"
 #include "OnLevelTriggerSystem/OnLevelTriggerDataAsset.h"
+#include "GameplayTagContainer.h" 
 
 DEFINE_LOG_CATEGORY(LogDialogueSystem);
 
@@ -25,6 +26,8 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 	LastRow = newState;
 	FDialogueRow* row = DialogueTable->FindRow<FDialogueRow>(FName(*LastRow), TEXT("DialogueSystem"));
 
+	//ReplicTagDelegate
+
 	if (row != nullptr)
 	{
 		if (!row->TriggerAsset.IsNull())
@@ -33,6 +36,8 @@ void UDialogueComponent::UpdateDialogueState(FString newState)
 			row->TriggerAsset->TriggerAction(GetWorld());
 		}
 
+
+		
 		DialogueWidget->SetupDialogueData(*row);
 		DialogueWidget->SetNPCName(NPC_Name);
 		DialogueWidget->SetNPCPortrait(NPC_Portrait);

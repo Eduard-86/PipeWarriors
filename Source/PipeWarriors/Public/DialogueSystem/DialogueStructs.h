@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "Engine/DataTable.h"
 #include "DialogueStructs.generated.h"
 
@@ -23,4 +24,7 @@ struct FDialogueRow : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSoftObjectPtr<UOnLevelTriggerDataAsset> TriggerAsset;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DialogTrigger;
 };

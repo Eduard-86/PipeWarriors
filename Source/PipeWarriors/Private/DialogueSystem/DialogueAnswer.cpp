@@ -15,6 +15,11 @@ void UDialogueAnswer::ProcessAnswerSelection()
 		DialogueRow.TriggerAsset->TriggerAction(GetWorld());
 	}
 
+	if (!DialogueRow.DialogTrigger.IsEmpty())
+	{
+		DialogueComponent->ReplicTagDelegate.Broadcast(DialogueRow.DialogTrigger);
+	}
+	
 	DialogueComponent->UpdateDialogueState(DialogueRow.nextTextOptions);
 }
 
